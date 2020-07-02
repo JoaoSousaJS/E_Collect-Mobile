@@ -1,6 +1,7 @@
 import React from 'react';
 import { Feather as Icon } from '@expo/vector-icons';
 import {Text} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import {
   Container, 
@@ -15,6 +16,13 @@ import {
 } from './styles';
 
 const Home = () => {
+
+  const navigation = useNavigation();
+
+  function handleNavigateToPoints() {
+    navigation.navigate('Points');
+  }
+
   return (
     <Container 
     source={require('../../assets/home-background.png')}
@@ -27,7 +35,7 @@ const Home = () => {
       </Main>
 
       <Footer>
-        <RegisterButton onPress={() => {}}>
+        <RegisterButton onPress={handleNavigateToPoints}>
           <ButtonIcon>
             <Text>
              <Icon name="arrow-right" color="#FFF" size={24}/>

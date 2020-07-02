@@ -4,7 +4,6 @@ import { RectButton } from 'react-native-gesture-handler';
 export const Container = styled.ImageBackground`
   flex: 1;
   padding: 32px;
-  background-color: #f0f0f5;
 `;
 
 export const Main = styled.View`
@@ -65,5 +64,4 @@ export const ButtonText = styled.Text`
   color: #FFF;
   font-family: Roboto_500Medium;
   font-size: 16px;
-  }
 `;
