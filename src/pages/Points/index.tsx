@@ -15,7 +15,10 @@ import {
   ItemsContainer,
   Item,
   ItemTitle,
-  MapMarker 
+  MapMarker,
+  MarkerImage,
+  MapMarkerContainer,
+  MapMarkerTitle 
 } from './styles';
 
 const Points = () => {
@@ -23,6 +26,10 @@ const Points = () => {
 
   function handleNavigateBack() {
     navigation.goBack();
+  }
+
+  function handleNavigateToDetail() {
+    navigation.navigate('Detail');
   }
 
   return (
@@ -46,7 +53,25 @@ const Points = () => {
               longitude:138.5487406,
               latitudeDelta: 0.014,
               longitudeDelta: 0.014,
-            }} />
+            }} >
+            <MapMarker 
+              coordinate={{
+                latitude: -34.9054429,
+                longitude: 138.5487406,
+              }}
+              onPress={handleNavigateToDetail}
+            >
+              <MapMarkerContainer>
+                <MarkerImage 
+                  source={{
+                    uri: 'https://images.unsplash.com/photo-1481761289552-381112059e05?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60'
+                  }}
+                />
+                <MapMarkerTitle>A random title</MapMarkerTitle>
+              </MapMarkerContainer>
+   
+            </MapMarker>
+          </ViewMap>
         </MapContainer>
       </Container>
       <ItemsContainer>

@@ -71,3 +71,28 @@ export const MapMarker = styled(Marker)`
   width: 90px;
   height: 80px;
 `;
+
+export const MarkerImage = styled.Image`
+  width: 90px;
+  height: 45px;
+
+`;
+
+export const MapMarkerContainer = styled.View`
+  width: 90px;
+  height: 70px;
+  background-color: #34CB79;
+  flex-direction: column;
+  border-radius: 8px;
+  overflow: hidden;
+  align-items: center;
+
+`;
+
+export const MapMarkerTitle = styled.Text`
+  flex: 1;
+  font-family: Roboto_400Regular;
+  color: #FFF;
+  font-size: 13px;
+  line-height: 23px;
+`;
