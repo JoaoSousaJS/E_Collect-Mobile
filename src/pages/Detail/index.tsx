@@ -1,5 +1,5 @@
 import React from 'react';
-import { Feather as Icon} from '@expo/vector-icons'
+import { Feather as Icon, FontAwesome } from '@expo/vector-icons'
 import {useNavigation} from '@react-navigation/native';
 import {BackButton} from '../Points/styles'
 import { 
@@ -9,8 +9,12 @@ import {
   PointItems,
   PointAddress,
   PointAddressTitle,
-  PointAddressContent
+  PointAddressContent,
+  DetailsFooter,
+  DetailsButton,
+  ButtonText
 } from './styles';
+import { SafeAreaView } from 'react-native';
 
 const Detail = () => {
 
@@ -21,7 +25,7 @@ const Detail = () => {
   }
 
   return (
-    <>
+    <SafeAreaView style={{ flex:1 }}>
       <Container>
           <BackButton onPress={handleNavigateBack}>
             <Icon 
@@ -38,9 +42,20 @@ const Detail = () => {
             <PointAddressTitle> Some address </PointAddressTitle>
             <PointAddressContent>South AUstralia</PointAddressContent>
           </PointAddress>
+
       </Container>
-      
-    </>
+      <DetailsFooter>
+        <DetailsButton onPress={() => {}}>
+          <FontAwesome name="whatsapp" size={20} color="#FFF" />
+          <ButtonText>Whatsapp</ButtonText>
+        </DetailsButton>
+        <DetailsButton onPress={() => {}}>
+          <Icon name="mail" size={20} color="#FFF" />
+          <ButtonText>E-mail</ButtonText>
+        </DetailsButton>
+      </DetailsFooter>
+
+    </SafeAreaView>
 
     );
 }

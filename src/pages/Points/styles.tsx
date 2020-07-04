@@ -4,9 +4,7 @@ import MapView, { Marker } from 'react-native-maps';
 
 export const Container = styled.View`
   flex: 1;
-  padding-left: 32px;
-  padding-right: 32px;
-  padding-top: 70px;
+  padding: 70px 32px 0 32px;
 `;
 
 export const BackButton = styled.TouchableOpacity`

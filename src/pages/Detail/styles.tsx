@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import {RectButton} from 'react-native-gesture-handler';
 
 export const Container = styled.View`
   flex: 1;
@@ -43,4 +44,29 @@ export const PointAddressContent = styled.Text`
   color: #322153;
   font-family: Roboto_500Medium;
   font-size: 16px;
+`;
+
+export const DetailsFooter = styled.View`
+  border-top-width: 0.5px;
+  border-color: #999;
+  padding: 20px 32px 0 32px;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const DetailsButton = styled(RectButton)`
+  width: 48%;
+  background-color: #34CB79;
+  border-radius: 10px;
+  height: 50px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ButtonText = styled.Text`
+margin-left: 8px;
+color: #FFF;
+font-size: 16px;
+font-family: Roboto_500Medium;
 `;
