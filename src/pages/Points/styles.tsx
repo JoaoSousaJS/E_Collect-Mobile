@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import Constants from 'expo-constants';
+import {StyleSheet} from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 
 export const Container = styled.View`
@@ -94,3 +94,11 @@ export const MapMarkerTitle = styled.Text`
   font-size: 13px;
   line-height: 23px;
 `;
+
+export const ItemSelected = StyleSheet.create({
+
+  selectedItem: {
+    borderColor: '#34CB79',
+    borderWidth: 2,
+  },
+})
