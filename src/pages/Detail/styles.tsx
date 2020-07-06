@@ -41,9 +41,10 @@ export const PointAddressTitle = styled.Text`
 `;
 
 export const PointAddressContent = styled.Text`
-  color: #322153;
-  font-family: Roboto_500Medium;
-  font-size: 16px;
+  font-family: Roboto_400Regular;
+  line-height: 24px;
+  margin-top: 8px;
+  color: #6C6C80;
 `;
 
 export const DetailsFooter = styled.View`

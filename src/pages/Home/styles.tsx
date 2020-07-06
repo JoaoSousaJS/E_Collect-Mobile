@@ -65,3 +65,12 @@ export const ButtonText = styled.Text`
   font-family: Roboto_500Medium;
   font-size: 16px;
 `;
+
+export const Input = styled.TextInput`
+  height: 60px;
+  background-color: #FFF;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  padding: 0 24px 0 24px;
+  font-size: 16px;
+`;

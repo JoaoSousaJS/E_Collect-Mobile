@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from 'react';
 import { ScrollView, Alert } from 'react-native';
 import { Feather as Icon} from '@expo/vector-icons'
-import {useNavigation } from '@react-navigation/native';
+import {useNavigation, useRoute } from '@react-navigation/native';
 import { SvgUri } from 'react-native-svg';
 import * as Location from 'expo-location';
 import api from '../../services/api';
@@ -37,10 +37,13 @@ interface Point {
   name: string;
   latitude: number;
   longitude: number;
-  items: {
-    title:'';
-  }[];
 }
+
+interface Params {
+  uf: string,
+  city: string
+}
+
 const Points = () => {
   const [items, setItems] = useState<Item[]>([]);
   const [points, setPoints] = useState<Point[]>([]);
@@ -48,6 +51,9 @@ const Points = () => {
   const [initialPosition, setInitialPosition] = useState<[number, number]>([0, 0]);
 
   const navigation = useNavigation();
+  const route = useRoute();
+
+  const routeParams = route.params as Params
 
   useEffect(() => {
     async function loadPosition() {
@@ -80,21 +86,23 @@ const Points = () => {
   useEffect(() => {
     api.get('point', {
       params: {
-        city: 'Adelaide',
-        uf: 'NT',
-        items: [5]
+        city: routeParams.city,
+        uf: routeParams.uf,
+        items: selectedItems
       }
     }).then(response => {
-
+      setPoints(response.data);
     })
-  },[])
+
+    console.log('teste')
+  },[selectedItems])
 
   function handleNavigateBack() {
     navigation.goBack();
   }
 
-  function handleNavigateToDetail() {
-    navigation.navigate('Detail');
+  function handleNavigateToDetail(id: number) {
+    navigation.navigate('Detail', {point_id : id});
   }
 
   function handleSelectItem (id: number) {
@@ -135,23 +143,26 @@ const Points = () => {
               latitudeDelta: 0.014,
               longitudeDelta: 0.014,
             }} >
+          {points.map(point => (
             <MapMarker 
-              coordinate={{
-                latitude: -34.9054429,
-                longitude: 138.5487406,
-              }}
-              onPress={handleNavigateToDetail}
-            >
-              <MapMarkerContainer>
-                <MarkerImage 
-                  source={{
-                    uri: 'https://images.unsplash.com/photo-1481761289552-381112059e05?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60'
-                  }}
-                />
-                <MapMarkerTitle>A random title</MapMarkerTitle>
-              </MapMarkerContainer>
-   
-            </MapMarker>
+            key={String(point.id)}
+            coordinate={{
+              latitude: point.latitude,
+              longitude: point.longitude,
+            }}
+            onPress={() => handleNavigateToDetail(point.id)}
+          >
+            <MapMarkerContainer>
+              <MarkerImage 
+                source={{
+                  uri: point.image
+                }}
+              />
+              <MapMarkerTitle>{point.name}</MapMarkerTitle>
+            </MapMarkerContainer>
+ 
+          </MapMarker>
+          ))}
           </ViewMap>
           )}
         </MapContainer>

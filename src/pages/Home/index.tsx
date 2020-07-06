@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Feather as Icon } from '@expo/vector-icons';
-import {Text} from 'react-native';
+import {Text, KeyboardAvoidingView, Platform, View} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import {
@@ -12,42 +12,70 @@ import {
   Footer,
   RegisterButton,
   ButtonIcon,
-  ButtonText
+  ButtonText,
+  Input
 } from './styles';
 
 const Home = () => {
 
+  const [uf, setUf] = useState('');
+  const [city, setCity] = useState('');
   const navigation = useNavigation();
 
+
   function handleNavigateToPoints() {
-    navigation.navigate('Points');
+    navigation.navigate('Points', {
+      uf,
+      city
+    });
   }
 
   return (
-    <Container 
-    source={require('../../assets/home-background.png')}
-    imageStyle={{ width: 274, height: 368}}
+    <KeyboardAvoidingView 
+      style={{ flex:1 }}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
-      <Main>
-        <LogoImage source={require('../../assets/logo.png')}/>
-        <Title>Your place to collect recyclable items</Title>
-        <Description>We help people to find collection points efficiently</Description>
-      </Main>
+      <Container 
+      source={require('../../assets/home-background.png')}
+      imageStyle={{ width: 274, height: 368}}
+      >
+        <Main>
+          <LogoImage source={require('../../assets/logo.png')}/>
+          <View>
+            <Title>Your place to collect recyclable items</Title>
+            <Description>We help people to find collection points efficiently</Description>
+          </View>
 
-      <Footer>
-        <RegisterButton onPress={handleNavigateToPoints}>
-          <ButtonIcon>
-            <Text>
-             <Icon name="arrow-right" color="#FFF" size={24}/>
-            </Text>
-          </ButtonIcon>
-          <ButtonText>
-            Let's find a collection point
-          </ButtonText>
-        </RegisterButton>
-      </Footer>
+        </Main>
+
+        <Footer>
+          <Input 
+            placeholder='Select State'
+            value={uf}
+            onChangeText={setUf}
+          />
+          <Input 
+            placeholder='Select City'
+            value={city}
+            onChangeText={setCity}
+          
+          />
+          <RegisterButton onPress={handleNavigateToPoints}>
+            <ButtonIcon>
+              <Text>
+              <Icon name="arrow-right" color="#FFF" size={24}/>
+              </Text>
+            </ButtonIcon>
+            <ButtonText>
+              Let's find a collection point
+            </ButtonText>
+          </RegisterButton>
+        </Footer>
       
-    </Container>
+      </Container>
+
+    </KeyboardAvoidingView>
+    
   )
 }
 
