@@ -37,6 +37,7 @@ interface Point {
   name: string;
   latitude: number;
   longitude: number;
+  image_url: string;
 }
 
 interface Params {
@@ -155,7 +156,7 @@ const Points = () => {
             <MapMarkerContainer>
               <MarkerImage 
                 source={{
-                  uri: point.image
+                  uri: point.image_url
                 }}
               />
               <MapMarkerTitle>{point.name}</MapMarkerTitle>

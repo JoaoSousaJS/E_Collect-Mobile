@@ -31,6 +31,7 @@ interface Data {
     whatsapp: number;
     city: string;
     uf: string;
+    image_url: string;
   }
   items: {
     title: string;
@@ -86,7 +87,7 @@ const Detail = () => {
             />
           </BackButton>
 
-          <PointImage source={{ uri: data.point.image}}/>
+          <PointImage source={{ uri: data.point.image_url}}/>
           <PointName>{data.point.name}</PointName>
           <PointItems>
             {data.items.map(item => item.title).join(', ')}
